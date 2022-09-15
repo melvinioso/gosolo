@@ -1,19 +1,13 @@
 const express = require('express');
 const request = require('request');
-const cors    = require('cors');
-const app     = express();
+const cors = require('cors');
+const app = express();
 
 app.use(cors());
 
-app.get('/representatives/:state',
-  findRepresentativesByState,
-  jsonResponse
-);
+app.get('/representatives/:state', findRepresentativesByState, jsonResponse);
 
-app.get('/senators/:state',
-  findSenatorsByState,
-  jsonResponse
-);
+app.get('/senators/:state', findSenatorsByState, jsonResponse);
 
 function findRepresentativesByState(req, res, next) {
   const url = `http://whoismyrepresentative.com/getall_reps_bystate.php?state=${req.params.state}&output=json`;
@@ -30,13 +24,13 @@ function handleApiResponse(res, next) {
     if (err || body[0] === '<') {
       res.locals = {
         success: false,
-        error: err || 'Invalid request. Please check your state variable.'
+        error: err || 'Invalid request. Please check your state variable.',
       };
       return next();
     }
     res.locals = {
       success: true,
-      results: JSON.parse(body).results
+      results: JSON.parse(body).results,
     };
     return next();
   };
