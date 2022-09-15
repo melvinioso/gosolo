@@ -1,6 +1,7 @@
 {
   "name": "find-rep-api",
   "version": "1.0.0",
+  "license": "ISC",
   "description": "Super simple wrapper around the api at whosimyrepresentative.com/api",
   "main": "index.js",
   "scripts": {
