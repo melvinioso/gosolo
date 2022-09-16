@@ -1,4 +1,7 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -6,9 +9,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 import { AppContext } from '../context/app';
 import { states } from '../constants/states';
@@ -21,15 +21,8 @@ const schema = yup
   .required();
 
 const SearchForm = () => {
-  const {
-    type,
-    setType,
-    state,
-    setState,
-    setResults,
-    setDetails,
-    fetchResults,
-  } = React.useContext(AppContext);
+  const { type, setType, state, setState, setResults, fetchResults } =
+    React.useContext(AppContext);
 
   const {
     register,
@@ -40,6 +33,7 @@ const SearchForm = () => {
   });
 
   const onSubmit = ({ type, state }) => {
+    setResults([]);
     fetchResults(type, state);
   };
 
@@ -49,13 +43,6 @@ const SearchForm = () => {
 
   const handleStateChange = (event) => {
     setState(event.target.value);
-  };
-
-  const handleReset = () => {
-    setType('');
-    setState('');
-    setResults([]);
-    setDetails({});
   };
 
   return (
@@ -119,14 +106,6 @@ const SearchForm = () => {
         onClick={handleSubmit(onSubmit)}
       >
         Submit
-      </Button>
-      <Button
-        sx={{ height: '40px' }}
-        variant="contained"
-        size="small"
-        onClick={handleReset}
-      >
-        Reset Form
       </Button>
     </Box>
   );
