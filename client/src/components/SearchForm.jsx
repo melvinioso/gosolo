@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
+import { AppContext } from '../context/app';
 import { states } from '../constants/states';
 
 const schema = yup
@@ -20,8 +21,8 @@ const schema = yup
   .required();
 
 const SearchForm = () => {
-  const [type, setType] = useState('');
-  const [state, setState] = useState('');
+  const { type, setType, state, setState, results, setResults } =
+    React.useContext(AppContext);
 
   const {
     register,
@@ -83,10 +84,10 @@ const SearchForm = () => {
           helpertext={errors.state?.message}
           onChange={handleStateChange}
         >
-          {states.map((state) => {
+          {states.map(({ value, name }) => {
             return (
-              <MenuItem key={state.value} value={state.value}>
-                {state.name}
+              <MenuItem key={value} value={value}>
+                {name}
               </MenuItem>
             );
           })}
