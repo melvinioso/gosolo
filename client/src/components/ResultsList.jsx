@@ -1,3 +1,4 @@
+import './ResultsList.css';
 import React from 'react';
 import { Typography } from '@mui/material';
 import Table from '@mui/material/Table';
@@ -11,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { AppContext } from '../context/app';
 
 const ResultsList = () => {
-  const { type, state, results } = React.useContext(AppContext);
+  const { type, state, results, setDetails } = React.useContext(AppContext);
 
   return (
     <div>
@@ -30,11 +31,12 @@ const ResultsList = () => {
             {results.map((result) => (
               <TableRow
                 key={result.name}
+                className="results-list-row"
                 sx={{
                   '&:last-child td, &:last-child th': { border: 0 },
                   cursor: 'pointer',
                 }}
-                onClick={() => console.log(result)}
+                onClick={() => setDetails(result)}
               >
                 <TableCell component="th" scope="row">
                   {result.name}

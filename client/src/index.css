@@ -1,0 +1,8 @@
+.results {
+  display: flex;
+  flex-direction: row;
+}
+
+.results > * {
+  margin-right: 40px;
+}

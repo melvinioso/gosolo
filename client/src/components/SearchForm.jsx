@@ -21,8 +21,15 @@ const schema = yup
   .required();
 
 const SearchForm = () => {
-  const { type, setType, state, setState, setResults, fetchResults } =
-    React.useContext(AppContext);
+  const {
+    type,
+    setType,
+    state,
+    setState,
+    setResults,
+    setDetails,
+    fetchResults,
+  } = React.useContext(AppContext);
 
   const {
     register,
@@ -48,6 +55,7 @@ const SearchForm = () => {
     setType('');
     setState('');
     setResults([]);
+    setDetails({});
   };
 
   return (

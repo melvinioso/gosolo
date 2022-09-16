@@ -7,6 +7,7 @@ function AppProvider({ children }) {
   const [type, setType] = useState('');
   const [state, setState] = useState('');
   const [results, setResults] = useState([]);
+  const [details, setDetails] = useState({});
 
   async function fetchResults(type, state) {
     try {
@@ -28,6 +29,8 @@ function AppProvider({ children }) {
         setState,
         results,
         setResults,
+        details,
+        setDetails,
         fetchResults,
       }}
     >
