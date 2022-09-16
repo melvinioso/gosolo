@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(el);
 const App = () => {
   return (
     <Container maxWidth="false">
-      <Typography variant="h3" sx={{ color: '#1e85f7' }}>
+      <Typography variant="h3" sx={{ color: '#1e85f7', marginBottom: '25px' }}>
         Who's My Represetative
       </Typography>
       <SearchForm />
