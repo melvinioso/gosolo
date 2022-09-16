@@ -14,18 +14,12 @@ const App = () => {
     <AppProvider>
       <Container maxWidth="false">
         <Typography
-          variant="h3"
+          variant="h4"
           sx={{ color: '#1e85f7', marginBottom: '25px' }}
         >
           Who's My Representative
         </Typography>
         <SearchForm />
-        <Typography
-          variant="h3"
-          sx={{ color: '#1e85f7', marginBottom: '25px' }}
-        >
-          Results
-        </Typography>
         <ResultsList />
       </Container>
     </AppProvider>
