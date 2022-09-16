@@ -21,7 +21,7 @@ const schema = yup
   .required();
 
 const SearchForm = () => {
-  const { type, setType, state, setState, results, setResults } =
+  const { type, setType, state, setState, fetchResults } =
     React.useContext(AppContext);
 
   const {
@@ -32,7 +32,9 @@ const SearchForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = ({ type, state }) => {
+    fetchResults(type, state);
+  };
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
@@ -65,8 +67,8 @@ const SearchForm = () => {
           helpertext={errors.type?.message}
           onChange={handleTypeChange}
         >
-          <MenuItem value={'representative'}>Representative</MenuItem>
-          <MenuItem value={'senator'}>Senator</MenuItem>
+          <MenuItem value={'representatives'}>Representatives</MenuItem>
+          <MenuItem value={'senators'}>Senators</MenuItem>
         </Select>
         <FormHelperText sx={{ color: 'red' }}>
           {errors.type?.message}

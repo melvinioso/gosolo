@@ -1,4 +1,5 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
+import axios from 'axios';
 
 const AppContext = createContext();
 
@@ -7,11 +8,16 @@ function AppProvider({ children }) {
   const [state, setState] = useState('');
   const [results, setResults] = useState([]);
 
-  useEffect(() => {
-    console.log('type', type);
-    console.log('state', state);
-    console.log('results', results);
-  }, [type, state, results]);
+  async function fetchResults(type, state) {
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/${type}/${state}`
+      );
+      setResults(response.data.results);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <AppContext.Provider
@@ -22,6 +28,7 @@ function AppProvider({ children }) {
         setState,
         results,
         setResults,
+        fetchResults,
       }}
     >
       {children}
