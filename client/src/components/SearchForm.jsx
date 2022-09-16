@@ -21,7 +21,7 @@ const schema = yup
   .required();
 
 const SearchForm = () => {
-  const { type, setType, state, setState, fetchResults } =
+  const { type, setType, state, setState, setResults, fetchResults } =
     React.useContext(AppContext);
 
   const {
@@ -42,6 +42,12 @@ const SearchForm = () => {
 
   const handleStateChange = (event) => {
     setState(event.target.value);
+  };
+
+  const handleReset = () => {
+    setType('');
+    setState('');
+    setResults([]);
   };
 
   return (
@@ -99,12 +105,20 @@ const SearchForm = () => {
         </FormHelperText>
       </FormControl>
       <Button
-        sx={{ height: '40px' }}
+        sx={{ height: '40px', mr: 2 }}
         variant="contained"
         size="small"
         onClick={handleSubmit(onSubmit)}
       >
         Submit
+      </Button>
+      <Button
+        sx={{ height: '40px' }}
+        variant="contained"
+        size="small"
+        onClick={handleReset}
+      >
+        Reset Form
       </Button>
     </Box>
   );

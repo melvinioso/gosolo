@@ -30,7 +30,11 @@ const ResultsList = () => {
             {results.map((result) => (
               <TableRow
                 key={result.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                  cursor: 'pointer',
+                }}
+                onClick={() => console.log(result)}
               >
                 <TableCell component="th" scope="row">
                   {result.name}
